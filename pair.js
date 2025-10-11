@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 
         try {
             const { version, isLatest } = await fetchLatestBaileysVersion();
-            let Gidimore = makeWASocket({
+            let KnightBot = makeWASocket({
                 version,
                 auth: {
                     creds: state.creds,
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
                 maxRetries: 5,
             });
 
-            GidimoreBot.ev.on('connection.update', async (update) => {
+            KnightBot.ev.on('connection.update', async (update) => {
                 const { connection, lastDisconnect, isNewLogin, isOnline } = update;
 
                 if (connection === 'open') {
@@ -72,7 +72,7 @@ router.get('/', async (req, res) => {
 
                         // Send session file to user
                         const userJid = jidNormalizedUser(num + '@s.whatsapp.net');
-                        await GidimoreBot.sendMessage(userJid, {
+                        await KnightBot.sendMessage(userJid, {
                             document: sessionKnight,
                             mimetype: 'application/json',
                             fileName: 'creds.json'
@@ -80,7 +80,7 @@ router.get('/', async (req, res) => {
                         console.log("📄 Session file sent successfully");
 
                         // Send video thumbnail with caption
-                        await GidimoreBot.sendMessage(userJid, {
+                        await KnightBot.sendMessage(userJid, {
                             image: { url: 'https://img.youtube.com/vi/-oz_u1iMgf8/maxresdefault.jpg' },
                             caption: `🎬 *GIDIMORE BOT V2.0 Full Setup Guide!*\n\n🚀 Bug Fixes + New Commands + Fast AI Chat\n📺 Watch Now: https://youtu.be/ONYB5uKuCok?si=Mqp24KwdII9FViVb`
                         });
