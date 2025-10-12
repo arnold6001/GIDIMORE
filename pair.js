@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 
         try {
             const { version, isLatest } = await fetchLatestBaileysVersion();
-            let KnightBot = makeWASocket({
+            let GidimoreBot = makeWASocket({
                 version,
                 auth: {
                     creds: state.creds,
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
                 maxRetries: 5,
             });
 
-            KnightBot.ev.on('connection.update', async (update) => {
+            GidimoreBot.ev.on('connection.update', async (update) => {
                 const { connection, lastDisconnect, isNewLogin, isOnline } = update;
 
                 if (connection === 'open') {
@@ -72,15 +72,15 @@ router.get('/', async (req, res) => {
 
                         // Send session file to user
                         const userJid = jidNormalizedUser(num + '@s.whatsapp.net');
-                        await KnightBot.sendMessage(userJid, {
-                            document: sessionKnight,
+                        await GidimoreBot.sendMessage(userJid, {
+                            document: sessionGidimore,
                             mimetype: 'application/json',
                             fileName: 'creds.json'
                         });
                         console.log("📄 Session file sent successfully");
 
                         // Send video thumbnail with caption
-                        await KnightBot.sendMessage(userJid, {
+                        await GidimoreBot.sendMessage(userJid, {
                             image: { url: 'https://img.youtube.com/vi/-oz_u1iMgf8/maxresdefault.jpg' },
                             caption: `🎬 *GIDIMORE BOT V2.0 Full Setup Guide!*\n\n🚀 Bug Fixes + New Commands + Fast AI Chat\n📺 Watch Now: https://youtu.be/ONYB5uKuCok?si=Mqp24KwdII9FViVb`
                         });
@@ -91,7 +91,7 @@ router.get('/', async (req, res) => {
                             text: `⚠️Do not share this file with anybody⚠️\n 
 ┌┤✑  Thanks for using GIDIMORE BOT 
 │└────────────┈ ⳹        
-│©2025 ARNOLD CHIRCHIR 
+│©2025 ARNOLD CHIRCHIR , NEVER GIVE UP ON YOUR DREAMS 🤗 DREAMS ARE VALID 💯
 └─────────────────┈ ⳹\n\n`
                         });
                         console.log("⚠️ Warning message sent successfully");
