@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GIDIMORE - WhatsApp Linker created by ARNOLD CHIRCHIR</title>
+  <title>VAMPARINA - WhatsApp Linker created by ARNOLD CHIRCHIR</title> <!-- Updated bot name -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <style>
     :root {
-      --primary-color: #8B0000; /* Dark red for creepy vibe */
-      --secondary-color: #D3D3D3; /* Light gray for text */
-      --accent-color: #1C2526; /* Dark, eerie background */
-      --text-color: #D3D3D3; /* Light gray text */
-      --background-color: #0F0F0F; /* Near-black background */
-      --hover-color: #4A0000; /* Darker red for hover */
-      --border-color: rgba(139, 0, 0, 0.5); /* Semi-transparent red border */
+      --primary-color: #8B0000;
+      --secondary-color: #D3D3D3;
+      --accent-color: #1C2526;
+      --text-color: #D3D3D3;
+      --background-color: #0F0F0F;
+      --hover-color: #4A0000;
+      --border-color: rgba(139, 0, 0, 0.5);
     }
 
     * {
@@ -25,7 +25,7 @@
 
     body {
       font-family: 'Creepster', cursive;
-      background: var(--background-color) url('https://cdn.pixabay.com/photo/2016/11/29/13/14/abandoned-1869718_1280.jpg') no-repeat center center fixed;
+      background: var(--background-color) url('https://cdn.pixabay.com/photo/2016/11/29/13/14/abandoned-1869718_1280.jpg') no-repeat center center fixed; /* Updated background image */
       background-size: cover;
       color: var(--text-color);
       min-height: 100vh;
@@ -58,11 +58,10 @@
       padding: 25px;
       box-shadow: 0 4px 16px rgba(139, 0, 0, 0.5);
       border: 1px solid var(--border-color);
-      animation: flicker 4s infinite, drip 3s infinite; /* Added drip animation */
+      animation: flicker 4s infinite, drip 3s infinite;
       position: relative;
     }
 
-    /* Dripping blood effect */
     @keyframes drip {
       0% { border-color: var(--border-color); }
       50% { border-color: rgba(139, 0, 0, 1); box-shadow: 0 8px 20px rgba(139, 0, 0, 0.7); }
@@ -106,11 +105,9 @@
       margin-bottom: 8px;
       color: var(--primary-color);
       text-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
-      animation: glitch 2s infinite; /* Added glitch animation */
-      position: relative;
+      animation: glitch 2s infinite;
     }
 
-    /* Glitch effect for title */
     @keyframes glitch {
       0% { transform: translate(0); text-shadow: 0 0 10px rgba(139, 0, 0, 0.7); }
       2% { transform: translate(-2px, 2px); text-shadow: 0 0 15px rgba(139, 0, 0, 1), 2px 2px 0 #FFD700; }
@@ -124,10 +121,9 @@
       color: rgba(211, 211, 211, 0.7);
       margin-bottom: 20px;
       font-family: 'Inter', sans-serif;
-      animation: glitch-subtle 3s infinite; /* Subtle glitch for subtitle */
+      animation: glitch-subtle 3s infinite;
     }
 
-    /* Subtle glitch for subtitle */
     @keyframes glitch-subtle {
       0% { transform: translate(0); }
       5% { transform: translate(1px, -1px); }
@@ -155,10 +151,9 @@
       text-decoration: none;
       transition: all 0.3s ease;
       border: 1px solid var(--border-color);
-      animation: neon-flicker 1.5s infinite; /* Added flicker for social icons */
+      animation: neon-flicker 1.5s infinite;
     }
 
-    /* Neon flicker effect for social icons */
     @keyframes neon-flicker {
       0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(139, 0, 0, 0.5); }
       50% { opacity: 0.7; box-shadow: none; }
@@ -172,7 +167,7 @@
     .social-icons a:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(139, 0, 0, 0.7);
-      animation: none; /* Disable flicker on hover for clarity */
+      animation: none;
     }
 
     .toggle-container {
@@ -210,10 +205,9 @@
 
     .toggle-option:hover:not(.active) {
       background: var(--background-color);
-      animation: shake 0.5s; /* Added shake on hover */
+      animation: shake 0.5s;
     }
 
-    /* Shake effect for toggle and buttons */
     @keyframes shake {
       0% { transform: translate(0, 0); }
       10% { transform: translate(-2px, 2px); }
@@ -244,7 +238,7 @@
       background: var(--primary-color);
       color: var(--secondary-color);
       border-color: var(--primary-color);
-      animation: shake 0.5s; /* Added shake on hover */
+      animation: shake 0.5s;
     }
 
     .input-group {
@@ -299,7 +293,7 @@
     .generate-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(139, 0, 0, 0.7);
-      animation: shake 0.5s; /* Added shake on hover */
+      animation: shake 0.5s;
     }
 
     .generate-btn.hidden {
@@ -390,7 +384,6 @@
       font-family: 'Inter', sans-serif;
     }
 
-    /* Creeping shadow effect behind container */
     .container::after {
       content: '';
       position: absolute;
@@ -429,7 +422,7 @@
 
     .audio-toggle:hover {
       background: var(--hover-color);
-      animation: shake 0.5s; /* Added shake on hover */
+      animation: shake 0.5s;
     }
 
     @media (max-width: 480px) {
@@ -457,7 +450,7 @@
 </head>
 <body>
   <audio id="backgroundMusic" autoplay loop>
-    <source src="https://youtube.com/lucid-dreams.mp3" type="audio/mpeg">
+    <source src="https://example.com/lucid-dreams.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
   <button class="audio-toggle" id="audioToggle" onclick="toggleAudio()">
@@ -467,7 +460,7 @@
   <div class="container">
     <div class="header">
       <div class="logo"><i class="fas fa-skull"></i></div>
-      <h1 class="title">GIDIMORE BOT</h1>
+      <h1 class="title">VAMPARINA</h1> <!-- Updated bot name -->
       <p class="subtitle">Link your WhatsApp with WhatsApp Linker created by ARNOLD CHIRCHIR a student studying at Sereret Secondary School with a view of becoming the best coding expert 😎 🇰🇪 WELL REPRESENTED</p>
       <div class="social-icons">
         <a href="https://youtube.com/@arnoldkipruto-qn7jn?si=7QZa3vzAU1cyMPvI?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
@@ -515,7 +508,7 @@
     </button>
 
     <div class="footer">
-      <p>© 2025 ARNOLD CHIRCHIR | GIDIMORE BOT</p>
+      <p>© 2025 ARNOLD CHIRCHIR | VAMPARINA</p> <!-- Updated bot name -->
     </div>
   </div>
 
