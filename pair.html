@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GIDIMORE - WhatsApp Linker created by ARNOLD CHIRCHIR a student studying at Seretet Secondary School with a view of becoming the best coding expert 😎 🇰🇪 WELL REPRESENTED</title>
+  <title>GIDIMORE - WhatsApp Linker created by ARNOLD CHIRCHIR</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <style>
     :root {
-      --primary-color: #000000;
-      --secondary-color: #ffffff;
-      --accent-color: #f0f0f0;
-      --text-color: #000000;
-      --background-color: #ffffff;
-      --hover-color: #f5f5f5;
-      --border-color: rgba(0, 0, 0, 0.1);
+      --primary-color: #8B0000; /* Dark red for creepy vibe */
+      --secondary-color: #D3D3D3; /* Light gray for text */
+      --accent-color: #1C2526; /* Dark, eerie background */
+      --text-color: #D3D3D3; /* Light gray text */
+      --background-color: #0F0F0F; /* Near-black background */
+      --hover-color: #4A0000; /* Darker red for hover */
+      --border-color: rgba(139, 0, 0, 0.5); /* Semi-transparent red border */
     }
 
     * {
@@ -23,24 +24,54 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--background-color);
+      font-family: 'Creepster', cursive;
+      background: var(--background-color) url('https://cdn.pixabay.com/photo/2016/11/29/13/14/abandoned-1869718_1280.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: var(--text-color);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/3k3k3k3.png');
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .container {
       width: 100%;
       max-width: 450px;
-      background: var(--background-color);
+      background: rgba(28, 37, 38, 0.8);
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 16px rgba(139, 0, 0, 0.5);
       border: 1px solid var(--border-color);
+      animation: flicker 4s infinite, drip 3s infinite; /* Added drip animation */
+      position: relative;
+    }
+
+    /* Dripping blood effect */
+    @keyframes drip {
+      0% { border-color: var(--border-color); }
+      50% { border-color: rgba(139, 0, 0, 1); box-shadow: 0 8px 20px rgba(139, 0, 0, 0.7); }
+      100% { border-color: var(--border-color); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
     }
 
     .header {
@@ -58,21 +89,51 @@
       align-items: center;
       justify-content: center;
       font-size: 28px;
-      color: purple;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      color: #FFD700;
+      box-shadow: 0 2px 12px rgba(139, 0, 0, 0.5);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
       margin-bottom: 8px;
       color: var(--primary-color);
+      text-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+      animation: glitch 2s infinite; /* Added glitch animation */
+      position: relative;
+    }
+
+    /* Glitch effect for title */
+    @keyframes glitch {
+      0% { transform: translate(0); text-shadow: 0 0 10px rgba(139, 0, 0, 0.7); }
+      2% { transform: translate(-2px, 2px); text-shadow: 0 0 15px rgba(139, 0, 0, 1), 2px 2px 0 #FFD700; }
+      4% { transform: translate(2px, -2px); text-shadow: 0 0 15px rgba(139, 0, 0, 1), -2px -2px 0 #FFD700; }
+      6% { transform: translate(0); text-shadow: 0 0 10px rgba(139, 0, 0, 0.7); }
+      100% { transform: translate(0); text-shadow: 0 0 10px rgba(139, 0, 0, 0.7); }
     }
 
     .subtitle {
       font-size: 14px;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(211, 211, 211, 0.7);
       margin-bottom: 20px;
+      font-family: 'Inter', sans-serif;
+      animation: glitch-subtle 3s infinite; /* Subtle glitch for subtitle */
+    }
+
+    /* Subtle glitch for subtitle */
+    @keyframes glitch-subtle {
+      0% { transform: translate(0); }
+      5% { transform: translate(1px, -1px); }
+      10% { transform: translate(-1px, 1px); }
+      15% { transform: translate(0); }
+      100% { transform: translate(0); }
     }
 
     .social-icons {
@@ -93,6 +154,14 @@
       font-size: 18px;
       text-decoration: none;
       transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      animation: neon-flicker 1.5s infinite; /* Added flicker for social icons */
+    }
+
+    /* Neon flicker effect for social icons */
+    @keyframes neon-flicker {
+      0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(139, 0, 0, 0.5); }
+      50% { opacity: 0.7; box-shadow: none; }
     }
 
     .social-icons a.youtube { background: #FF0000; }
@@ -102,10 +171,10 @@
 
     .social-icons a:hover {
       transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.7);
+      animation: none; /* Disable flicker on hover for clarity */
     }
 
-    /* Toggle Switch Styles */
     .toggle-container {
       display: flex;
       align-items: center;
@@ -127,6 +196,7 @@
       font-weight: 500;
       transition: all 0.3s ease;
       position: relative;
+      font-family: 'Inter', sans-serif;
     }
 
     .toggle-option.active {
@@ -140,7 +210,20 @@
 
     .toggle-option:hover:not(.active) {
       background: var(--background-color);
+      animation: shake 0.5s; /* Added shake on hover */
     }
+
+    /* Shake effect for toggle and buttons */
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-2px, 2px); }
+      20% { transform: translate(2px, -2px); }
+      30% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      50% { transform: translate(0, 0); }
+      100% { transform: translate(0, 0); }
+    }
+
     .copy-btn {
       width: 100%;
       padding: 12px;
@@ -154,11 +237,14 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      font-family: 'Inter', sans-serif;
     }
 
     .copy-btn:hover {
-      background: var(--background-color);
+      background: var(--primary-color);
+      color: var(--secondary-color);
       border-color: var(--primary-color);
+      animation: shake 0.5s; /* Added shake on hover */
     }
 
     .input-group {
@@ -175,6 +261,7 @@
       margin-bottom: 8px;
       font-weight: 500;
       font-size: 13px;
+      font-family: 'Inter', sans-serif;
     }
 
     .input-field {
@@ -182,15 +269,16 @@
       padding: 12px;
       border: 1.5px solid var(--border-color);
       border-radius: 12px;
-      background: var(--background-color);
+      background: rgba(28, 37, 38, 0.9);
       color: var(--text-color);
       font-size: 15px;
+      font-family: 'Inter', sans-serif;
     }
 
     .input-field:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.5);
     }
 
     .generate-btn {
@@ -205,11 +293,13 @@
       cursor: pointer;
       transition: all 0.3s ease;
       margin-bottom: 16px;
+      font-family: 'Inter', sans-serif;
     }
 
     .generate-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.7);
+      animation: shake 0.5s; /* Added shake on hover */
     }
 
     .generate-btn.hidden {
@@ -229,6 +319,7 @@
       align-items: center;
       justify-content: center;
       border: 1.5px solid var(--border-color);
+      font-family: 'Inter', sans-serif;
     }
 
     .qr-display {
@@ -246,17 +337,18 @@
       max-height: 280px;
       margin: 0 auto 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 16px rgba(139, 0, 0, 0.5);
     }
 
     .qr-instructions {
       font-size: 13px;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(211, 211, 211, 0.7);
       line-height: 1.5;
+      font-family: 'Inter', sans-serif;
     }
 
     .success-message {
-      color: #000aff;
+      color: #FFD700;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -265,7 +357,7 @@
     }
 
     .error-message {
-      color: #e74c3c;
+      color: #FF4500;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -294,7 +386,50 @@
       text-align: center;
       margin-top: 20px;
       font-size: 12px;
-      color: rgba(0, 0, 0, 0.5);
+      color: rgba(211, 211, 211, 0.5);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Creeping shadow effect behind container */
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
+      z-index: -1;
+      animation: creep-shadow 5s infinite ease-in-out;
+    }
+
+    @keyframes creep-shadow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(10px, 10px) scale(1.05); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .audio-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      z-index: 1000;
+    }
+
+    .audio-toggle:hover {
+      background: var(--hover-color);
+      animation: shake 0.5s; /* Added shake on hover */
     }
 
     @media (max-width: 480px) {
@@ -321,11 +456,19 @@
   </style>
 </head>
 <body>
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://youtube.com/lucid-dreams.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <button class="audio-toggle" id="audioToggle" onclick="toggleAudio()">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
   <div class="container">
     <div class="header">
-      <div class="logo"><i class="fas fa-robot"></i></div>
+      <div class="logo"><i class="fas fa-skull"></i></div>
       <h1 class="title">GIDIMORE BOT</h1>
-      <p class="subtitle">Link your WhatsApp with WhatsApp Linker created by ARNOLD CHIRCHIR a student studying at Seretet Secondary School with a view of becoming the best coding expert 😎 🇰🇪 WELL REPRESENTED</p>
+      <p class="subtitle">Link your WhatsApp with WhatsApp Linker created by ARNOLD CHIRCHIR a student studying at Sereret Secondary School with a view of becoming the best coding expert 😎 🇰🇪 WELL REPRESENTED</p>
       <div class="social-icons">
         <a href="https://youtube.com/@arnoldkipruto-qn7jn?si=7QZa3vzAU1cyMPvI?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
         <a href="t.me/KylanDylan" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
@@ -334,7 +477,6 @@
       </div>
     </div>
 
-    <!-- Toggle Switch -->
     <div class="toggle-container">
       <div class="toggle-option active" data-mode="pair">
         <i class="fas fa-key"></i> Pair Code
@@ -373,28 +515,37 @@
     </button>
 
     <div class="footer">
-      <p>© 2025 ARNOLD CHIRCHIR| GIDIMORE BOT</p>
+      <p>© 2025 ARNOLD CHIRCHIR | GIDIMORE BOT</p>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
+    const audio = document.getElementById('backgroundMusic');
+    const audioToggle = document.getElementById('audioToggle');
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+      } else {
+        audio.pause();
+        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      }
+    }
+
     let currentMode = 'pair';
 
-    // Toggle functionality
     document.querySelectorAll('.toggle-option').forEach(option => {
       option.addEventListener('click', function() {
         const mode = this.dataset.mode;
         if (mode === currentMode) return;
 
-        // Update active state
         document.querySelectorAll('.toggle-option').forEach(opt => opt.classList.remove('active'));
         this.classList.add('active');
 
-        // Update mode
         currentMode = mode;
 
-        // Update button and input visibility
         const submitBtn = document.getElementById('submit');
         const inputGroup = document.getElementById('inputGroup');
         
@@ -405,11 +556,9 @@
         } else {
           submitBtn.classList.add('hidden');
           inputGroup.classList.add('hidden');
-          // Auto-generate QR code when QR mode is selected
           generateQRCode();
         }
 
-        // Clear displays
         document.getElementById('codeDisplay').innerHTML = 'Your pair code will appear here';
         document.getElementById('qrDisplay').style.display = 'none';
         document.getElementById('codeDisplay').style.display = 'flex';
@@ -482,6 +631,7 @@
         loadingSpinner.style.display = "none";
       }
     });
+
     function copyCode() {
       const codeDisplay = document.getElementById("codeDisplay").innerText;
       const code = codeDisplay.replace('CODE: ', '');
