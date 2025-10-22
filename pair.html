@@ -340,9 +340,178 @@
     .bat1 { animation-duration: 15s; top: 10%; animation-delay: 0s; }
     .bat2 { animation-duration: 25s; top: 30%; animation-delay: 5s; font-size: 40px; }
     .bat3 { animation-duration: 18s; top: 60%; animation-delay: 10s; font-size: 25px; }
+    .bat4 { animation-duration: 22s; top: 5%; animation-delay: 3s; font-size: 35px; animation-direction: reverse; /* Fly opposite direction */ }
+    .bat5 { animation-duration: 17s; top: 70%; animation-delay: 8s; font-size: 20px; }
+    .bat6 { animation-duration: 28s; top: 45%; animation-delay: 12s; font-size: 45px; animation-direction: reverse; }
 
-    .bat1, .bat2, .bat3 {
+    .bat1, .bat2, .bat3, .bat4, .bat5, .bat6 {
       animation: fly 20s linear infinite, flap 0.5s ease-in-out infinite alternate;
+    }
+
+    /* Creepy Fog/Mist */
+    .fog {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0.4;
+      z-index: 1;
+      animation: mist 30s linear infinite;
+    }
+
+    @keyframes mist {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Lightning Flash */
+    .lightning {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0);
+      z-index: 1;
+      animation: lightning-flash 20s infinite;
+    }
+
+    @keyframes lightning-flash {
+      0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { background: rgba(255, 255, 255, 0); }
+      5%, 25%, 55% { background: rgba(255, 255, 255, 0.3); } /* Brief flashes */
+    }
+
+    /* Dripping Blood Effect on Title */
+    .title {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .title::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: var(--primary-color);
+      animation: drip 2s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes drip {
+      0% { transform: translateY(-100%); opacity: 1; }
+      100% { transform: translateY(100%); opacity: 0; }
+    }
+
+    /* Swaying Cobwebs */
+    .cobweb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .cobweb::before {
+      content: '\f704'; /* Spider web icon */
+      font-family: "Font Awesome 5 Free";
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      font-size: 50px;
+      color: rgba(255, 255, 255, 0.2);
+      animation: sway 5s infinite ease-in-out;
+    }
+
+    .cobweb::after {
+      content: '\f704';
+      font-family: "Font Awesome 5 Free";
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      font-size: 40px;
+      color: rgba(255, 255, 255, 0.2);
+      animation: sway 6s infinite ease-in-out reverse;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    /* Floating Ghosts */
+    .ghost {
+      position: absolute;
+      font-size: 40px;
+      color: rgba(255, 255, 255, 0.3);
+      opacity: 0;
+      animation: float 15s linear infinite;
+      z-index: 1;
+    }
+
+    .ghost:before {
+      content: '\f6e2'; /* Ghost icon */
+      font-family: "Font Awesome 5 Free";
+    }
+
+    .ghost1 { bottom: -50px; left: 20%; animation-delay: 0s; }
+    .ghost2 { bottom: -50px; left: 50%; animation-delay: 5s; }
+    .ghost3 { bottom: -50px; left: 80%; animation-delay: 10s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    /* Creepy Shadow Pulse on Container */
+    .container {
+      animation: pulse-shadow 4s infinite ease-in-out;
+    }
+
+    @keyframes pulse-shadow {
+      0%, 100% { box-shadow: 0 4px 16px rgba(139, 0, 0, 0.5); }
+      50% { box-shadow: 0 4px 16px rgba(139, 0, 0, 0.8); }
+    }
+
+    /* Flickering Title */
+    .title {
+      animation: flicker 3s infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      52% { opacity: 1; }
+      54% { opacity: 0.7; }
+      56% { opacity: 1; }
+    }
+
+    /* Spinning Logo for Creepy Effect */
+    .logo {
+      animation: spin-slow 30s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Breathing Border */
+    .container {
+      border: 1px solid var(--border-color);
+      animation: breathe 5s infinite ease-in-out;
+    }
+
+    @keyframes breathe {
+      0%, 100% { border-width: 1px; }
+      50% { border-width: 2px; }
     }
 
     @media (max-width: 480px) {
@@ -373,6 +542,23 @@
   <div class="bat bat1"></div>
   <div class="bat bat2"></div>
   <div class="bat bat3"></div>
+  <div class="bat bat4"></div>
+  <div class="bat bat5"></div>
+  <div class="bat bat6"></div>
+
+  <!-- Creepy Fog -->
+  <div class="fog"></div>
+
+  <!-- Lightning Flash -->
+  <div class="lightning"></div>
+
+  <!-- Swaying Cobwebs -->
+  <div class="cobweb"></div>
+
+  <!-- Floating Ghosts -->
+  <div class="ghost ghost1"></div>
+  <div class="ghost ghost2"></div>
+  <div class="ghost ghost3"></div>
 
   <div class="container">
     <div class="header">
@@ -399,7 +585,7 @@
 
     <div class="input-group" id="inputGroup">
       <label class="input-label">Enter your WhatsApp number with country code</label>
-      <input type="text" id="mobileNumber" class="input-field" placeholder="+917023951514" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
+      <input type="text" id="mobileNumber" class="input-field" placeholder="+254703110780" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
     </div>
 
     <button class="generate-btn" id="submit">
@@ -520,36 +706,4 @@
 
       try {
         const response = await axios(`/pair?number=${mobileNumber.replace(/[^0-9]/g, "")}`);
-        
-        const code = response.data.code || "Service Unavailable";
-        if (code === "Service Unavailable") {
-          codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Service Unavailable</div>';
-        } else {
-          codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${code}</div>`;
-        }
-        codeDisplay.style.display = 'flex';
-      } catch (error) {
-        console.error("Error generating code:", error);
-        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Error generating code. Please try again.</div>';
-        codeDisplay.style.display = 'flex';
-      } finally {
-        loadingSpinner.style.display = "none";
-      }
-    });
-    function copyCode() {
-      const codeDisplay = document.getElementById("codeDisplay").innerText;
-      const code = codeDisplay.replace('CODE: ', '');
-      navigator.clipboard.writeText(code).then(() => {
-        const copyBtn = document.getElementById("copy");
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        setTimeout(() => {
-          copyBtn.innerHTML = originalText;
-        }, 2000);
-      }).catch(err => {
-        console.error("Failed to copy text: ", err);
-      });
-    }
-  </script>
-</body>
-</html>
+     
