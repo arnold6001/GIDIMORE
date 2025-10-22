@@ -357,6 +357,51 @@
       color: var(--primary-color);
     }
 
+    /* Audio Player Styles */
+    .audio-player {
+      margin-top: 20px;
+      background: var(--hover-color);
+      border-radius: 14px;
+      padding: 15px;
+      border: 2px solid var(--border-color);
+      text-align: center;
+      animation: fadeInText 0.5s ease-in-out;
+    }
+
+    .audio-player .track-title {
+      font-size: 14px;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .audio-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .audio-btn {
+      background: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-color);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .audio-btn:hover {
+      background: var(--hover-color);
+      box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+      transform: scale(1.1);
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 25px;
@@ -381,6 +426,16 @@
       .title {
         font-size: 24px;
       }
+
+      .audio-player {
+        padding: 10px;
+      }
+
+      .audio-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -404,7 +459,7 @@
 
     <div class="input-group" id="inputGroup">
       <label class="input-label">Enter your WhatsApp number with country code</label>
-      <input type="text" id="mobileNumber" class="input-field" placeholder="+254123456789" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
+      <input type="text" id="mobileNumber" class="input-field" placeholder="+254703110780" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
     </div>
 
     <button class="generate-btn" id="submit">
@@ -433,26 +488,33 @@
     <div class="footer">
       <p>© 2025 Arnold Chirchir | VAMPARINA | <a href="mailto:arnoldkipruto193@gmail.com">arnoldkipruto193@gmail.com</a></p>
     </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player">
+      <div class="track-title" id="trackTitle">Loading...</div>
+      <div class="audio-controls">
+        <button class="audio-btn" id="prevTrack"><i class="fas fa-backward"></i></button>
+        <button class="audio-btn" id="playPause"><i class="fas fa-play"></i></button>
+        <button class="audio-btn" id="nextTrack"><i class="fas fa-forward"></i></button>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
+    // Existing JavaScript for Pair Code and QR Code
     let currentMode = 'pair';
 
-    // Toggle functionality
     document.querySelectorAll('.toggle-option').forEach(option => {
       option.addEventListener('click', function() {
         const mode = this.dataset.mode;
         if (mode === currentMode) return;
 
-        // Update active state
         document.querySelectorAll('.toggle-option').forEach(opt => opt.classList.remove('active'));
         this.classList.add('active');
 
-        // Update mode
         currentMode = mode;
 
-        // Update button and input visibility
         const submitBtn = document.getElementById('submit');
         const inputGroup = document.getElementById('inputGroup');
         
@@ -463,11 +525,9 @@
         } else {
           submitBtn.classList.add('hidden');
           inputGroup.classList.add('hidden');
-          // Auto-generate QR code when QR mode is selected
           generateQRCode();
         }
 
-        // Clear displays
         document.getElementById('codeDisplay').innerHTML = 'Your pair code will appear here';
         document.getElementById('qrDisplay').style.display = 'none';
         document.getElementById('codeDisplay').style.display = 'flex';
@@ -555,6 +615,72 @@
         console.error("Failed to copy text: ", err);
       });
     }
+
+    // Audio Player JavaScript
+    const tracks = [
+      { title: "Vampire Nocturne", src: "https://www.kozco.com/tech/piano2-CoolEdit.mp3" }, // Placeholder track
+      { title: "Midnight Shadows", src: "https://www.kozco.com/tech/LJ110307.mp3" }, // Placeholder track
+      { title: "Gothic Whispers", src: "https://www.kozco.com/tech/organfinale.mp3" } // Placeholder track
+      // Replace with your own vampire-themed song URLs hosted on Render or a CDN
+    ];
+
+    let currentTrackIndex = 0;
+    const audio = new Audio(tracks[currentTrackIndex].src);
+    audio.loop = true;
+    audio.volume = 0.3; // Lower volume to avoid overpowering the page
+    const playPauseBtn = document.getElementById("playPause");
+    const prevTrackBtn = document.getElementById("prevTrack");
+    const nextTrackBtn = document.getElementById("nextTrack");
+    const trackTitle = document.getElementById("trackTitle");
+
+    function updateTrackTitle() {
+      trackTitle.textContent = tracks[currentTrackIndex].title;
+    }
+
+    function playTrack() {
+      audio.src = tracks[currentTrackIndex].src;
+      audio.play();
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      updateTrackTitle();
+    }
+
+    function pauseTrack() {
+      audio.pause();
+      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    }
+
+    playPauseBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        playTrack();
+      } else {
+        pauseTrack();
+      }
+    });
+
+    prevTrackBtn.addEventListener("click", () => {
+      currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+      playTrack();
+    });
+
+    nextTrackBtn.addEventListener("click", () => {
+      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+      playTrack();
+    });
+
+    // Autoplay on load (muted to comply with browser policies)
+    audio.muted = true;
+    audio.play().then(() => {
+      audio.muted = false; // Unmute after user interaction
+      updateTrackTitle();
+    }).catch(err => {
+      console.log("Autoplay prevented:", err);
+    });
+
+    // Update track when it ends
+    audio.addEventListener("ended", () => {
+      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+      playTrack();
+    });
   </script>
 </body>
 </html>
