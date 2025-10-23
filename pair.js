@@ -82,14 +82,14 @@ router.get('/', async (req, res) => {
                         // Send video thumbnail with caption
                         await KnightBot.sendMessage(userJid, {
                             image: { url: 'https://img.youtube.com/vi/-oz_u1iMgf8/maxresdefault.jpg' },
-                            caption: `🎬 *GIDIMORE V2.0 Full Setup Guide!*\n\n🚀 Bug Fixes + New Commands + Fast AI Chat\n📺 Watch Now: https://youtu.be/ONYB5uKuCok?si=Mqp24KwdII9FViVb`
+                            caption: `🎬 *VAMPARINA V1.2.0 Full Setup Guide!*\n\n🚀 Bug Fixes + New Commands + Fast AI Chat\n📺 Watch Now: https://youtu.be/ONYB5uKuCok?si=Mqp24KwdII9FViVb`
                         });
                         console.log("🎬 Video guide sent successfully");
 
                         // Send warning message
                         await KnightBot.sendMessage(userJid, {
                             text: `⚠️Do not share this file with anybody⚠️\n 
-┌┤✑  Thanks for using GIDIMORE BOT
+┌┤✑  Thanks for using VAMPARINA BOT
 │└────────────┈ ⳹        
 │©2025 ARNOLD CHIRCHIR, NEVER GIVE UP ON YOUR DREAMS 🤗 DREAMS ARE VALID 💯 
 └─────────────────┈ ⳹\n\n`
