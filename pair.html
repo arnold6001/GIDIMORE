@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <style>
     :root {
-      --primary-color: #8B0000; /* Dark red for creepy vibe */
+      --primary-color: #000000;
       --secondary-color: #ffffff;
       --accent-color: #f0f0f0;
-      --text-color: #ffffff;
-      --background-color: #1a1a1a; /* Dark background */
-      --hover-color: #333333;
-      --border-color: rgba(139, 0, 0, 0.5);
+      --text-color: #000000;
+      --background-color: #ffffff;
+      --hover-color: #f5f5f5;
+      --border-color: rgba(0, 0, 0, 0.1);
     }
 
     * {
@@ -31,13 +31,12 @@
       justify-content: center;
       align-items: center;
       padding: 15px;
-      animation: flicker 2s infinite alternate; /* Creepy flicker animation */
+      animation: fadeIn 1s ease-in-out; /* Cool animation: fade in on load */
     }
 
-    @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.8; }
-      100% { opacity: 1; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .container {
@@ -46,15 +45,14 @@
       background: var(--background-color);
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 4px 16px rgba(139, 0, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       border: 1px solid var(--border-color);
-      animation: pulse 3s infinite; /* Creepy pulse */
+      animation: slideUp 0.8s ease-out; /* Cool animation: slide up */
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 4px 16px rgba(139, 0, 0, 0.3); }
-      50% { box-shadow: 0 4px 20px rgba(139, 0, 0, 0.6); }
-      100% { box-shadow: 0 4px 16px rgba(139, 0, 0, 0.3); }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .header {
@@ -73,13 +71,15 @@
       justify-content: center;
       font-size: 28px;
       color: white;
-      box-shadow: 0 2px 12px rgba(139, 0, 0, 0.5);
-      animation: spin 5s linear infinite; /* Slow spin for creepy effect */
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      animation: bounceIn 1.2s ease-out; /* Cool animation: bounce in */
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .title {
@@ -87,16 +87,43 @@
       font-weight: 700;
       margin-bottom: 8px;
       color: var(--primary-color);
-      text-shadow: 0 0 10px rgba(139, 0, 0, 0.8); /* Glowing text */
     }
 
     .subtitle {
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(0, 0, 0, 0.7);
       margin-bottom: 20px;
     }
 
-    /* Social icons removed */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a.youtube { background: #FF0000; }
+    .social-icons a.telegram { background: #0088cc; }
+    .social-icons a.whatsapp { background: #0cfa10; }
+    .social-icons a.github { background: #333; }
+
+    .social-icons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
 
     /* Toggle Switch Styles */
     .toggle-container {
@@ -134,7 +161,6 @@
     .toggle-option:hover:not(.active) {
       background: var(--background-color);
     }
-
     .copy-btn {
       width: 100%;
       padding: 12px;
@@ -184,7 +210,7 @@
     .input-field:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3);
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
     }
 
     .generate-btn {
@@ -203,7 +229,7 @@
 
     .generate-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .generate-btn.hidden {
@@ -240,17 +266,17 @@
       max-height: 280px;
       margin: 0 auto 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(139, 0, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     .qr-instructions {
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(0, 0, 0, 0.7);
       line-height: 1.5;
     }
 
     .success-message {
-      color: #ff0000;
+      color: #000aff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -259,7 +285,7 @@
     }
 
     .error-message {
-      color: #ff4500;
+      color: #e74c3c;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -288,7 +314,7 @@
       text-align: center;
       margin-top: 20px;
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(0, 0, 0, 0.5);
     }
 
     @media (max-width: 480px) {
@@ -312,24 +338,20 @@
         padding: 20px;
       }
     }
-
-    /* Audio element for the song */
-    #bgMusic {
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <audio id="bgMusic" loop>
-    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Placeholder; replace with actual Lucid Dreams audio URL if available -->
-    Your browser does not support the audio element.
-  </audio>
   <div class="container">
     <div class="header">
-      <div class="logo"><i class="fas fa-bat"></i></div> <!-- Changed to bat icon for vampire theme -->
+      <div class="logo"><i class="fas fa-robot"></i></div>
       <h1 class="title">VAMPARINA</h1>
-      <p class="subtitle">Link your WhatsApp device to the eternal night</p>
-      <!-- Social icons removed -->
+      <p class="subtitle">Link your WhatsApp device</p>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@mr_unique_hacker?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="https://t.me/+hxojkc7kaVViYzdl" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://whatsapp.com/channel/0029Va90zAnIHphOuO8Msp3A" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://github.com/mruniquehacker/Knightbot-md" target="_blank" class="github"><i class="fab fa-github"></i></a>
+      </div>
     </div>
 
     <!-- Toggle Switch -->
@@ -344,7 +366,7 @@
 
     <div class="input-group" id="inputGroup">
       <label class="input-label">Enter your WhatsApp number with country code</label>
-      <input type="text" id="mobileNumber" class="input-field" placeholder="+917023951514" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
+      <input type="text" id="mobileNumber" class="input-field" placeholder="+254703110780" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
     </div>
 
     <button class="generate-btn" id="submit">
@@ -371,19 +393,19 @@
     </button>
 
     <div class="footer">
-      <p>© 2025 Arnold Chirchir | VAMPARINA | Email: arnoldkipruto193@gmail.com</p>
+      <p>© 2025 Arnold Chirchir | VAMPARINA | Contact: arnoldkipruto193@gmail.com</p>
     </div>
   </div>
+
+  <!-- Hidden audio element for the song -->
+  <audio id="phonkSong" preload="none">
+    <source src="https://example.com/path-to-2-phut-hon-phonk.mp3" type="audio/mpeg">
+    <!-- Replace with actual URL to "2 phut hon phonk" song -->
+  </audio>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
     let currentMode = 'pair';
-
-    // Function to play music on user input
-    function playMusic() {
-      const audio = document.getElementById('bgMusic');
-      audio.play().catch(e => console.log('Audio play failed:', e));
-    }
 
     // Toggle functionality
     document.querySelectorAll('.toggle-option').forEach(option => {
@@ -464,8 +486,9 @@
         return;
       }
 
-      // Play music when user submits
-      playMusic();
+      // Play the song when user enters (clicks generate)
+      const phonkSong = document.getElementById('phonkSong');
+      phonkSong.play().catch(err => console.log('Audio play failed:', err));
 
       loadingSpinner.style.display = "block";
       codeDisplay.innerHTML = '';
@@ -489,10 +512,6 @@
         loadingSpinner.style.display = "none";
       }
     });
-
-    // Also play music on input change for "when user enters"
-    document.getElementById("mobileNumber").addEventListener("input", playMusic);
-
     function copyCode() {
       const codeDisplay = document.getElementById("codeDisplay").innerText;
       const code = codeDisplay.replace('CODE: ', '');
@@ -504,9 +523,4 @@
           copyBtn.innerHTML = originalText;
         }, 2000);
       }).catch(err => {
-        console.error("Failed to copy text: ", err);
-      });
-    }
-  </script>
-</body>
-</html>
+        console.error("Failed
