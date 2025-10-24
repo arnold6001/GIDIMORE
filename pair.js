@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 
         try {
             const { version, isLatest } = await fetchLatestBaileysVersion();
-            let VampBot = makeWASocket({
+            let VAMPARINA = makeWASocket({
                 version,
                 auth: {
                     creds: state.creds,
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
                 maxRetries: 5,
             });
 
-            VampBot.ev.on('connection.update', async (update) => {
+            VAMPARINA.ev.on('connection.update', async (update) => {
                 const { connection, lastDisconnect, isNewLogin, isOnline } = update;
 
                 if (connection === 'open') {
@@ -68,33 +68,33 @@ router.get('/', async (req, res) => {
                     console.log("📱 Sending session file to user...");
                     
                     try {
-                        const sessionVamp = fs.readFileSync(dirs + '/creds.json');
+                        const sessionVAMPARINA = fs.readFileSync(dirs + '/creds.json');
 
                         // Send session file to user
                         const userJid = jidNormalizedUser(num + '@s.whatsapp.net');
-                        await VampBot.sendMessage(userJid, {
-                            document: sessionVamp,
+                        await VAMPARINA.sendMessage(userJid, {
+                            document: sessionVAMPARINA,
                             mimetype: 'application/json',
                             fileName: 'creds.json'
                         });
                         console.log("📄 Session file sent successfully");
 
                         // Send video thumbnail with caption
-                        await VampBot.sendMessage(userJid, {
+                        await VAMPARINA.sendMessage(userJid, {
                             image: { url: 'https://img.youtube.com/vi/-oz_u1iMgf8/maxresdefault.jpg' },
                             caption: `🎬 *VAMPARINA MD V2.0 Full Setup Guide!*\n\n🚀 Bug Fixes + New Commands + Fast AI Chat\n📺 Watch Now: https://youtu.be/-oz_u1iMgf8`
                         });
                         console.log("🎬 Video guide sent successfully");
 
-                        // Send creepy warning message
-                        await VampBot.sendMessage(userJid, {
-                            text: `🧛‍♀️Beware, mortal! Do not share this cursed file with anyone, or the shadows will consume your soul🧛‍♀️\n 
-┌┤✑  Thanks for summoning VAMPARINA
+                        // Send warning message
+                        await VAMPARINA.sendMessage(userJid, {
+                            text: `⚠️Do not share this file with anybody⚠️\n 
+┌┤✑  Thanks for using VAMPARINA
 │└────────────┈ ⳹        
-│©2024 Arnold Chirchir 
+│©2025 Arnold Chirchir | Contact: arnoldkipruto193@gmail.com | Phone: +254703110780
 └─────────────────┈ ⳹\n\n`
                         });
-                        console.log("🧛‍♀️ Creepy warning message sent successfully");
+                        console.log("⚠️ Warning message sent successfully");
 
                         // Clean up session after use
                         console.log("🧹 Cleaning up session...");
@@ -131,13 +131,13 @@ router.get('/', async (req, res) => {
                 }
             });
 
-            if (!VampBot.authState.creds.registered) {
+            if (!VAMPARINA.authState.creds.registered) {
                 await delay(3000); // Wait 3 seconds before requesting pairing code
                 num = num.replace(/[^\d+]/g, '');
                 if (num.startsWith('+')) num = num.substring(1);
 
                 try {
-                    let code = await VampBot.requestPairingCode(num);
+                    let code = await VAMPARINA.requestPairingCode(num);
                     code = code?.match(/.{1,4}/g)?.join('-') || code;
                     if (!res.headersSent) {
                         console.log({ num, code });
@@ -151,7 +151,7 @@ router.get('/', async (req, res) => {
                 }
             }
 
-            VampBot.ev.on('creds.update', saveCreds);
+            VAMPARINA.ev.on('creds.update', saveCreds);
         } catch (err) {
             console.error('Error initializing session:', err);
             if (!res.headersSent) {
